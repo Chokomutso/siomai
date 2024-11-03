@@ -6,6 +6,7 @@
 #include <bitset>
 #include "Conversion_Calculation.h"
 #include "PrimeNumbers_Factorization.h"
+#include "Bitwise.h"
 #include "ModArithmetic.h"
 #include "AES.h"
 #include "DES.h"
@@ -136,7 +137,7 @@ int main(){
 	                    return main();
 	                    break;
 	                default:
-	                    cout << "Invalid Choice!";
+	                    cout << "\nInvalid Choice!\n";
 	                    break;
 	            }
 	            break;
@@ -212,7 +213,7 @@ int main(){
 	                            break;
 	                        }
 	                        default:
-	                            cout << "Invalid Choice!";
+	                            cout << "\nInvalid Choice!\n";
 	                    }
 	                    
 	                    break;
@@ -276,7 +277,7 @@ int main(){
 	                            break;
 	                        }
 	                        default:
-	                            cout << "Invalid Choice!";
+	                            cout << "\nInvalid Choice!\n";
 	                    }
 	                    
 	                    break;
@@ -340,7 +341,7 @@ int main(){
 	                            break;
 	                        }
 	                        default:
-	                            cout << "Invalid Choice!";
+	                            cout << "\nInvalid Choice!\n";
 	                    }
 	                    
 	                    break;
@@ -348,7 +349,7 @@ int main(){
 	                    system("cls");
 	                    return main();
 	                default:
-	                    cout << "Invalid Choice!";
+	                    cout << "\nInvalid Choice!\n";
 	                    break;
 	            }
 	            
@@ -434,7 +435,8 @@ int main(){
 				cout << "=============== Bitwise Operation ===============\n\n";
 			    cout << "[1] AND\n"
 					 << "[2] OR\n"
-					 << "[3] XOR\n\n"
+					 << "[3] XOR\n"
+					 << "[4] NOT\n\n"
 					 << "Choose a number: ";
 				cin >> key2;
 				
@@ -442,67 +444,89 @@ int main(){
 					case '1':{
 						system("cls");
 						cout << "=============== AND ===============\n\n";
-						int a, b, temp;
-						string binA, binB, result;
+						string binA, binB;
 						cout << "Enter binary number A: ";
 						cin >> binA;
 						cout << "Enter binary number B: ";
 						cin >> binB;
 					    
-					    a = binaryToDecimal(binA);
-					    b = binaryToDecimal(binB);
+					    // Perform bitwise AND operation
+					    string result = bitwiseAnd(binA, binB);
 					    
-					    cout << "\nA = " << binA << " - " << a << endl;
-					    cout << "B = " << binB << " - " << b << endl;
+					    // Calculate decimal equivalents
+					    double decimal1 = binaryFractionToDecimal(binA);
+					    double decimal2 = binaryFractionToDecimal(binB);
+					    double decimalResult = binaryFractionToDecimal(result);
 					    
-					    temp = a&b;
-					    result = decimalToBinary(temp);
-					    
-					    cout << "\nA&B = " << result << " - " << temp << endl;
+					    cout << "\nA: " << binA << " = " << decimal1 << endl;
+					    cout << "B: " << binB << " = " << decimal2 << endl;
+					    cout << "\nA&B: " << result << " = " << decimalResult << endl;
 						break;
 					}
 					case '2':{
 						system("cls");
 						cout << "=============== OR ===============\n\n";
-						int a, b, temp;
-						string binA, binB, result;
+						string binA, binB;
 						cout << "Enter binary number A: ";
 						cin >> binA;
 						cout << "Enter binary number B: ";
 						cin >> binB;
+						
+					    // Perform bitwise OR operation
+					    string result = bitwiseOr(binA, binB);
 					    
-					    a = binaryToDecimal(binA);
-					    b = binaryToDecimal(binB);
+					    // Calculate decimal equivalents
+					    double decimal1 = binaryFractionToDecimal(binA);
+					    double decimal2 = binaryFractionToDecimal(binB);
+					    double decimalResult = binaryFractionToDecimal(result);
 					    
-					    cout << "\nA = " << binA << " - " << a << endl;
-					    cout << "B = " << binB << " - " << b << endl;
-					    
-					    temp = a|b;
-					    result = decimalToBinary(temp);
-					    
-					    cout << "\nA|B = " << result << " - " << temp << endl;
+					    cout << "\nA: " << binA << " = " << decimal1 << endl;
+					    cout << "B: " << binB << " = " << decimal2 << endl;
+					    cout << "\nA|B: " << result << " = " << decimalResult << endl;
 						break;
 					}
 					case '3':{
 						system("cls");
 						cout << "=============== XOR ===============\n\n";
-						int a, b, temp;
-						string binA, binB, result;
+						string binA, binB;
 						cout << "Enter binary number A: ";
 						cin >> binA;
 						cout << "Enter binary number B: ";
 						cin >> binB;
 					    
-					    a = binaryToDecimal(binA);
-					    b = binaryToDecimal(binB);
+					    // Perform bitwise XOR operation
+					    string result = bitwiseXor(binA, binB);
 					    
-					    cout << "\nA = " << binA << " - " << a << endl;
-					    cout << "B = " << binB << " - " << b << endl;
+					    // Calculate decimal equivalents
+					    double decimal1 = binaryFractionToDecimal(binA);
+					    double decimal2 = binaryFractionToDecimal(binB);
+					    double decimalResult = binaryFractionToDecimal(result);
 					    
-					    temp = a^b;
-					    result = decimalToBinary(temp);
+					    cout << "\nA: " << binA << " = " << decimal1 << endl;
+					    cout << "B: " << binB << " = " << decimal2 << endl;
+					    cout << "\nA^B: " << result << " = " << decimalResult << endl;
+						break;
+					}
+					case '4':{
+						system("cls");
+						cout << "=============== NOT ===============\n\n";
+						string binA;
+						cout << "Enter binary number A: ";
+						cin >> binA;
 					    
-					    cout << "\nA^B = " << result << " - " << temp << endl;
+					    // Perform bitwise NOT operation
+					    string result = bitwiseNot(binA);
+					    
+					    // Calculate decimal equivalents
+					    double decimal1 = binaryFractionToDecimal(binA);
+					    double decimalResult = binaryFractionToDecimal(result);
+					    
+					    cout << "\nA: " << binA << " = " << decimal1 << endl;
+					    cout << "\nNOT A: " << result << " = " << decimalResult << endl;
+						break;
+					}
+					default:{
+						cout << "Invalid Choice!\n";
 						break;
 					}
 				}
@@ -624,6 +648,10 @@ int main(){
 									s = s%26;
 									
     								cout << "\nDecrypted Text: " << encrypt(text, 26-s) << endl;
+									break;
+								}
+								default:{
+									cout << "\nInvalid Choice!\n";
 									break;
 								}
 							}
@@ -889,12 +917,20 @@ int main(){
 									return main();
 									break;
 								}
+								default:{
+									cout << "\nInvalid Choice!\n";
+									break;
+								}
 							}
 							break;
 						}
 						case '0':{
 							system("cls");
 							return main();
+							break;
+						}
+						default:{
+							cout << "\nInvalid Choice!\n";
 							break;
 						}
 					}
@@ -909,7 +945,7 @@ int main(){
 				break;
 			}
 	        default:
-	            cout << "\nInvalid Choice!";
+	            cout << "\nInvalid Choice!\n";
 	            break;
 	    }
 		
